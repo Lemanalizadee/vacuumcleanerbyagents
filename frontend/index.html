@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vacuum Cleaner – Intelligent Agents</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>🧹 Vacuum Cleaner – Intelligent Agents</h1>
+    <p>Pick an agent type, press <b>Run</b> and watch it clean the room. Click squares in the room to edit it (empty → dirt ×1 → ×2 → ×3 → obstacle).</p>
+  </header>
+
+  <main>
+    <section class="stage">
+      <div class="canvas-wrap"><canvas id="room"></canvas></div>
+      <div class="legend">
+        <span><i class="sw robot"></i>Robot</span>
+        <span><i class="sw charger"></i>Charger / start</span>
+        <span><i class="sw dirt"></i>Dirt (1–3 dots = amount)</span>
+        <span><i class="sw wall"></i>Obstacle</span>
+      </div>
+      <div class="buttons">
+        <button id="run" class="primary">▶ Run</button>
+        <button id="pause">⏸ Pause</button>
+        <button id="step">⏭ Step</button>
+        <button id="reset">↺ Reset</button>
+        <button id="compare">📊 Compare all agents</button>
+      </div>
+      <div id="status" class="status"></div>
+    </section>
+
+    <aside class="panel">
+      <h2>Agent</h2>
+      <select id="agent"></select>
+      <p id="agentDesc" class="hint"></p>
+
+      <h2>Room</h2>
+      <label>Size <b id="sizeV"></b><input id="size" type="range" min="5" max="16" value="10"></label>
+      <label>Dirt <b id="dirtV"></b>%<input id="dirt" type="range" min="3" max="50" value="15"></label>
+      <label>Obstacles <b id="obstV"></b>%<input id="obst" type="range" min="0" max="35" value="15"></label>
+      <label>Seed (optional)<input id="seed" type="number" placeholder="random"></label>
+      <button id="newRoom">🎲 New room</button>
+
+      <h2>Robot</h2>
+      <label>Battery (moves) <b id="batV"></b><input id="battery" type="range" min="10" max="300" value="40"></label>
+      <label>Max steps <b id="maxV"></b><input id="maxsteps" type="range" min="50" max="1000" step="50" value="400"></label>
+      <label>Speed <b id="spdV"></b><input id="speed" type="range" min="1" max="10" value="6"></label>
+
+      <h2>Live stats</h2>
+      <div class="stats">
+        <div><span>Step</span><b id="sStep">0</b></div>
+        <div><span>Score</span><b id="sScore">0</b></div>
+        <div><span>Cleaned</span><b id="sClean">0/0</b></div>
+        <div><span>Action</span><b id="sAction">–</b></div>
+      </div>
+      <div class="bar"><div id="batBar"></div><em id="batText"></em></div>
+
+      <h2>Decision log</h2>
+      <ul id="log" class="log"></ul>
+    </aside>
+  </main>
+
+  <section class="compare" id="compareBox" hidden>
+    <h2>Comparison on the same room</h2>
+    <table id="compareTable"></table>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>
